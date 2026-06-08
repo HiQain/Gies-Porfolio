@@ -19,37 +19,72 @@ export default function Secoto() {
             </h1>
             <div className="w-24 h-1 bg-primary mb-8" />
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Co-Founder of SECOTO International Sports Events — bridging sports, climate action, and international diplomacy on a global stage.
+              Co-Founder & Manager of SECOTO International Sports Events — bridging sports, climate action, and international diplomacy on a global stage.
             </p>
           </motion.div>
 
-          <motion.div variants={fadeUpVariant} className="mb-16">
-            <div className="bg-gradient-to-br from-primary/10 via-background to-background border border-primary/20 p-8 md:p-12 relative overflow-hidden">
-              <div className="absolute -right-16 -bottom-16 opacity-5">
-                <Globe className="w-64 h-64 text-primary" />
+          <motion.div variants={fadeUpVariant} className="mb-8">
+            <div className="bg-gradient-to-br from-primary/10 via-background to-background border border-primary/20 p-8 md:p-12">
+              <div className="flex flex-wrap items-center gap-4 mb-6">
+                <span className="text-primary font-medium tracking-widest uppercase text-xs border border-primary/30 px-3 py-1">Partner & Manager</span>
+                <span className="text-muted-foreground text-xs">License No. 1532549 · Dubai, UAE</span>
               </div>
-              <div className="relative z-10">
-                <div className="flex flex-wrap items-center gap-4 mb-6">
-                  <span className="text-primary font-medium tracking-widest uppercase text-xs border border-primary/30 px-3 py-1">Co-Founder</span>
-                  <span className="text-muted-foreground text-xs">License No. 1532549 · Dubai, UAE · Est. 2025</span>
-                </div>
-                <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">
-                  SECOTO International Sports Events L.L.C
-                </h2>
-                <p className="text-muted-foreground text-lg mb-8 max-w-2xl leading-relaxed">
-                  A Dubai-licensed company dedicated to transforming international sports events into powerful platforms for climate change advocacy. Working alongside the world's most influential environmental and sporting bodies to drive the Road to 2030 agenda.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">
+                SECOTO International Sports Events L.L.C
+              </h2>
+              <p className="text-muted-foreground text-lg mb-8 max-w-2xl leading-relaxed">
+                A Dubai-licensed company dedicated to transforming international sports events into powerful platforms for climate change advocacy. Working alongside the world's most influential environmental and sporting bodies to drive the Road to 2030 agenda.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {[
+                  { icon: <Globe className="w-5 h-5 text-primary" />, label: "UNEP", desc: "United Nations Environment Programme" },
+                  { icon: <Trophy className="w-5 h-5 text-primary" />, label: "Olympic Committee", desc: "International Olympic Committee" },
+                  { icon: <Flag className="w-5 h-5 text-primary" />, label: "197+ Countries", desc: "Road to 2030 Global Framework" },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-start gap-4 p-5 border border-primary/20 bg-primary/5">
+                    <div className="mt-0.5">{item.icon}</div>
+                    <div>
+                      <p className="font-bold text-sm">{item.label}</p>
+                      <p className="text-muted-foreground text-xs mt-1">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div variants={fadeUpVariant} className="mb-16">
+            <div className="bg-card border border-border p-8">
+              <h3 className="text-sm uppercase tracking-widest text-primary font-medium mb-6">Official License Details</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-5 mb-6">
+                {[
+                  { label: "License Number", value: "1532549" },
+                  { label: "Legal Type", value: "LLC (Limited Liability)" },
+                  { label: "Activity", value: "Sports Events Marketing" },
+                  { label: "Issued", value: "24 July 2025" },
+                  { label: "Expires", value: "23 July 2026" },
+                  { label: "DCCI No.", value: "629999" },
+                  { label: "Office", value: "Office 9-273, Al Khabeesi, Deira, Dubai" },
+                  { label: "Issued by", value: "Dept. of Economy & Tourism, Dubai" },
+                ].map((item) => (
+                  <div key={item.label} className="border-l-2 border-primary/30 pl-3">
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">{item.label}</p>
+                    <p className="font-medium text-sm">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="border-t border-border pt-6">
+                <h4 className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Partners (50/50)</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {[
-                    { icon: <Globe className="w-5 h-5 text-primary" />, label: "UNEP", desc: "United Nations Environment Programme" },
-                    { icon: <Trophy className="w-5 h-5 text-primary" />, label: "Olympic Committee", desc: "International Olympic Committee" },
-                    { icon: <Flag className="w-5 h-5 text-primary" />, label: "197+ Countries", desc: "Road to 2030 Global Framework" },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-start gap-4 p-5 border border-primary/20 bg-primary/5">
-                      <div className="mt-0.5">{item.icon}</div>
+                    { name: "Gies Abdelmonim Ahmed Mohamed", role: "Partner & Manager", nationality: "Sudan", share: "50%" },
+                    { name: "Patience Shumbusho", role: "Partner & Manager", nationality: "Rwanda", share: "50%" },
+                  ].map((p) => (
+                    <div key={p.name} className="flex items-start gap-3 p-4 bg-background border border-border/50">
+                      <Users className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
                       <div>
-                        <p className="font-bold text-sm">{item.label}</p>
-                        <p className="text-muted-foreground text-xs mt-1">{item.desc}</p>
+                        <p className="font-serif font-bold text-sm">{p.name}</p>
+                        <p className="text-muted-foreground text-xs mt-0.5">{p.role} · {p.nationality} · {p.share}</p>
                       </div>
                     </div>
                   ))}

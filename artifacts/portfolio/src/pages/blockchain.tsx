@@ -25,9 +25,6 @@ export default function Blockchain() {
 
           <motion.div variants={fadeUpVariant} className="mb-16">
             <div className="bg-gradient-to-br from-primary/10 via-background to-background border border-primary/20 p-8 md:p-12 relative overflow-hidden">
-              <div className="absolute -right-16 -bottom-16 opacity-5">
-                <Cpu className="w-64 h-64 text-primary" />
-              </div>
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-2">
                   <span className="text-primary font-medium tracking-widest uppercase text-xs">Chief Technology Officer</span>
