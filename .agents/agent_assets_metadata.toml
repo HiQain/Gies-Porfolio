@@ -1,0 +1,20 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "oVjxXL1dM_Imf2JPdAFLS"
+uri = "file://artifacts/portfolio/public/images/hero.png"
+type = "image"
+title = "Cinematic Dubai skyline silhouette"
+
+[[generated]]
+id = "rILuARYiaUfy13YRy6LUh"
+uri = "file://artifacts/portfolio/public/images/blockchain.png"
+type = "image"
+title = "Blockchain gold digital assets"
+
+[[generated]]
+id = "OwEhmnXd8ntNtXBH9sLgY"
+uri = "file://artifacts/portfolio/public/images/secoto.png"
+type = "image"
+title = "Climate sports global framework"
