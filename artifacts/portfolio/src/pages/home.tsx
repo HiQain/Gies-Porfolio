@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, ArrowRight } from "lucide-react";
-import { PageWrapper, fadeUpVariant } from "@/components/layout/PageWrapper";
+import { ArrowRight } from "lucide-react";
 
 const roles = [
   "IT Expert & Network Engineer",
@@ -22,89 +21,146 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-background">
-      {/* Background Image with Overlay */}
+    <div className="relative min-h-[100dvh] flex items-center overflow-hidden bg-background">
+      {/* Subtle background gradient */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/hero.png"
-          alt="Dubai Skyline"
-          className="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-background" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/3 to-transparent" />
       </div>
 
-      <div className="container relative z-10 px-6 md:px-12 mx-auto pt-24 md:pt-28">
-        <div className="max-w-4xl">
+      <div className="container relative z-10 px-6 md:px-12 mx-auto pt-24 md:pt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+
+          {/* Left — Text Content */}
+          <div className="flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 border border-primary/30 bg-primary/5 text-primary text-xs font-medium uppercase tracking-widest mb-8">
+                <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                Dubai, UAE
+              </div>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground leading-[1.1] tracking-tight mb-6"
+            >
+              Gies<br />
+              <span className="text-primary">Abdelmonim</span>
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="h-10 md:h-12 mb-6"
+            >
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentRoleIndex}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.5 }}
+                  className="text-lg md:text-2xl font-light text-muted-foreground"
+                >
+                  {roles[currentRoleIndex]}
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-base md:text-lg text-muted-foreground max-w-lg mb-10 leading-relaxed"
+            >
+              15+ years spanning technology, blockchain, and law — building at the intersection of innovation and impact.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Link
+                href="/it-experience"
+                className="group inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:bg-primary/90"
+              >
+                Explore My Journey
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-2 border border-border bg-transparent text-foreground px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
+              >
+                Get in Touch
+              </Link>
+            </motion.div>
+
+            {/* Stats row */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="flex gap-8 mt-14 border-t border-border/50 pt-8"
+            >
+              {[
+                { value: "15+", label: "Years Experience" },
+                { value: "3", label: "Domains" },
+                { value: "UAE", label: "Based in Dubai" },
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-2xl font-serif font-bold text-primary">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mt-0.5">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right — Photo */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="relative flex justify-center lg:justify-end items-center"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 border border-primary/30 bg-primary/5 text-primary text-xs font-medium uppercase tracking-widest mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Dubai, UAE
+            <div className="relative">
+              {/* Gold accent frame */}
+              <div className="absolute -top-4 -right-4 w-full h-full border border-primary/30 z-0" />
+              <div className="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-primary z-0" />
+
+              {/* Main photo */}
+              <div className="relative z-10 w-[320px] md:w-[400px] lg:w-[440px] overflow-hidden">
+                <img
+                  src="/images/photo-4.jpg"
+                  alt="Gies Abdelmonim"
+                  className="w-full object-cover object-top"
+                  style={{ maxHeight: "580px" }}
+                />
+                {/* Bottom gradient overlay */}
+                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background/60 to-transparent" />
+              </div>
+
+              {/* Floating name card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="absolute -bottom-6 left-6 bg-background border border-border px-6 py-4 z-20 shadow-xl"
+              >
+                <p className="font-serif font-bold text-lg">Gies Abdelmonim</p>
+                <p className="text-primary text-xs uppercase tracking-widest mt-0.5">Dubai, UAE · Since 2006</p>
+              </motion.div>
             </div>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground leading-[1.1] tracking-tight mb-6"
-          >
-            Gies Abdelmonim
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="h-12 md:h-16 mb-6"
-          >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentRoleIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
-                className="text-xl md:text-3xl font-light text-primary"
-              >
-                {roles[currentRoleIndex]}
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
-          >
-            15+ years spanning technology, blockchain, and law — building at the intersection of innovation and impact.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <Link
-              href="/it-experience"
-              className="group inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:bg-primary/90"
-            >
-              Explore My Journey
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/contact"
-              className="group inline-flex items-center justify-center gap-2 border border-border bg-background/50 backdrop-blur text-foreground px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
-            >
-              Get in Touch
-            </Link>
-          </motion.div>
         </div>
       </div>
 
