@@ -54,8 +54,6 @@ export default function Home() {
             className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold text-foreground leading-[1.1] tracking-tight mb-6"
           >
             Gies Abdelmonim
-            <br />
-            <span className="text-muted-foreground">Ahmed Mohamed</span>
           </motion.h1>
 
           <motion.div
