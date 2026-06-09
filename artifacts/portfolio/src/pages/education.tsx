@@ -72,7 +72,8 @@ export default function Education() {
         <motion.div
           variants={staggerContainer}
           initial="hidden"
-          animate="show"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.05 }}
           className="max-w-4xl mx-auto"
         >
           <motion.div variants={fadeUpVariant} className="mb-16">

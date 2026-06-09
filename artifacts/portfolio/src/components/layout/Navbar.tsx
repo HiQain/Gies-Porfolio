@@ -1,20 +1,24 @@
-import { Link, useLocation } from "wouter";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { path: "/", label: "Home" },
-  { path: "/it-experience", label: "Technology" },
-  { path: "/blockchain", label: "Blockchain" },
-  { path: "/secoto", label: "SECOTO" },
-  { path: "/legal", label: "Legal" },
-  { path: "/education", label: "Education" },
-  { path: "/contact", label: "Contact" },
+  { id: "home", label: "Home" },
+  { id: "technology", label: "Technology" },
+  { id: "blockchain", label: "Blockchain" },
+  { id: "secoto", label: "SECOTO" },
+  { id: "legal", label: "Legal" },
+  { id: "education", label: "Education" },
+  { id: "contact", label: "Contact" },
 ];
 
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export function Navbar() {
-  const [location] = useLocation();
+  const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -22,14 +26,28 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location]);
+    const observers: IntersectionObserver[] = [];
+
+    navItems.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
 
   return (
     <>
@@ -41,20 +59,22 @@ export function Navbar() {
         }`}
       >
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-          <Link href="/" className="group flex items-center gap-2">
+          <button
+            onClick={() => scrollToSection("home")}
+            className="group flex items-center gap-2"
+          >
             <span className="font-serif text-xl md:text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
               Gies<span className="text-primary">.</span>
             </span>
-          </Link>
+          </button>
 
-          {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-8">
             {navItems.map((item) => {
-              const isActive = location === item.path;
+              const isActive = activeSection === item.id;
               return (
-                <Link
-                  key={item.path}
-                  href={item.path}
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
                   className={`text-sm font-medium transition-colors hover:text-primary relative ${
                     isActive ? "text-primary" : "text-muted-foreground"
                   }`}
@@ -67,18 +87,17 @@ export function Navbar() {
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                </Link>
+                </button>
               );
             })}
-            <Link
-              href="/contact"
+            <button
+              onClick={() => scrollToSection("contact")}
               className="ml-4 px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-none border border-primary hover:bg-transparent hover:text-primary transition-all duration-300 flex items-center gap-2"
             >
               Get in Touch <ChevronRight className="w-4 h-4" />
-            </Link>
+            </button>
           </nav>
 
-          {/* Mobile Menu Toggle */}
           <button
             className="lg:hidden text-foreground p-2 -mr-2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -88,7 +107,6 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Nav */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -100,29 +118,35 @@ export function Navbar() {
           >
             <nav className="flex flex-col gap-6 mt-8">
               {navItems.map((item) => {
-                const isActive = location === item.path;
+                const isActive = activeSection === item.id;
                 return (
-                  <Link
-                    key={item.path}
-                    href={item.path}
-                    className={`text-2xl font-serif tracking-tight transition-colors ${
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      scrollToSection(item.id);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`text-left text-2xl font-serif tracking-tight transition-colors ${
                       isActive ? "text-primary" : "text-foreground"
                     }`}
                   >
                     {item.label}
-                  </Link>
+                  </button>
                 );
               })}
             </nav>
             <div className="mt-auto pt-12">
               <p className="text-sm text-muted-foreground mb-4">giesalbon@gmail.com</p>
               <p className="text-sm text-muted-foreground mb-8">+971-582-188-898</p>
-              <Link
-                href="/contact"
+              <button
+                onClick={() => {
+                  scrollToSection("contact");
+                  setMobileMenuOpen(false);
+                }}
                 className="w-full px-6 py-4 text-center text-sm font-medium bg-primary text-primary-foreground border border-primary hover:bg-transparent hover:text-primary transition-all duration-300"
               >
                 Get in Touch
-              </Link>
+              </button>
             </div>
           </motion.div>
         )}

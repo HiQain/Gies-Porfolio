@@ -256,3 +256,12 @@
     inset: -1px;
   }
 }
+
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+.section-snap {
+  scroll-snap-align: start;
+}

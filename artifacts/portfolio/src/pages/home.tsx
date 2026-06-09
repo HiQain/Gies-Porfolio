@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -89,19 +88,19 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.7 }}
               className="flex flex-col sm:flex-row gap-4"
             >
-              <Link
-                href="/it-experience"
+              <button
+                onClick={() => document.getElementById("technology")?.scrollIntoView({ behavior: "smooth" })}
                 className="group inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:bg-primary/90"
               >
                 Explore My Journey
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/contact"
+              </button>
+              <button
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="group inline-flex items-center justify-center gap-2 border border-border bg-transparent text-foreground px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
               >
                 Get in Touch
-              </Link>
+              </button>
             </motion.div>
 
             {/* Stats row */}
