@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 
 const navItems = [
   { id: "home", label: "Home" },
@@ -21,6 +21,12 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const progressScaleX = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 28,
+    mass: 0.2,
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,6 +64,10 @@ export function Navbar() {
             : "bg-transparent border-transparent py-6"
         }`}
       >
+        <motion.div
+          className="absolute inset-x-0 top-0 h-[3px] origin-left bg-primary shadow-[0_0_18px_hsl(var(--primary)/0.5)]"
+          style={{ scaleX: progressScaleX }}
+        />
         <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
           <button
             onClick={() => scrollToSection("home")}
