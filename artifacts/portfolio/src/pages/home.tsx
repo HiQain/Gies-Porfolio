@@ -37,7 +37,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 border border-primary/30 bg-primary/5 text-primary text-xs font-medium uppercase tracking-widest mb-8">
+              <div className="eyebrow inline-flex items-center gap-2 px-3 py-1.5 border border-primary/30 bg-primary/5 text-primary mb-8">
                 <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                 Dubai, UAE
               </div>
@@ -47,7 +47,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground leading-[1.1] tracking-tight mb-6"
+              className="display-title text-5xl md:text-6xl lg:text-7xl font-serif font-semibold text-foreground mb-6"
             >
               Gies<br />
               <span className="text-primary">Abdelmonim</span>
@@ -66,7 +66,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.5 }}
-                  className="text-lg md:text-2xl font-light text-muted-foreground"
+                  className="text-lg md:text-[1.65rem] font-medium tracking-[-0.03em] text-muted-foreground"
                 >
                   {roles[currentRoleIndex]}
                 </motion.div>
@@ -77,7 +77,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-base md:text-lg text-muted-foreground max-w-lg mb-10 leading-relaxed"
+              className="body-copy text-base md:text-[1.1rem] text-muted-foreground max-w-xl mb-10 leading-relaxed"
             >
               15+ years spanning technology, blockchain, and law — building at the intersection of innovation and impact.
             </motion.p>
@@ -90,14 +90,14 @@ export default function Home() {
             >
               <button
                 onClick={() => document.getElementById("technology")?.scrollIntoView({ behavior: "smooth" })}
-                className="group inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:bg-primary/90"
+                className="group inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 text-[0.8rem] font-semibold tracking-[0.16em] uppercase transition-all duration-300 hover:bg-primary/90"
               >
                 Explore My Journey
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
               <button
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                className="group inline-flex items-center justify-center gap-2 border border-border bg-transparent text-foreground px-8 py-4 text-sm font-semibold tracking-wide uppercase transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
+                className="group inline-flex items-center justify-center gap-2 border border-border bg-transparent text-foreground px-8 py-4 text-[0.8rem] font-semibold tracking-[0.16em] uppercase transition-all duration-300 hover:border-primary/50 hover:bg-primary/5"
               >
                 Get in Touch
               </button>
@@ -116,8 +116,8 @@ export default function Home() {
                 { value: "UAE", label: "Based in Dubai" },
               ].map((stat) => (
                 <div key={stat.label}>
-                  <p className="text-2xl font-serif font-bold text-primary">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mt-0.5">{stat.label}</p>
+                  <p className="text-[1.7rem] font-serif font-semibold tracking-[-0.05em] text-primary">{stat.value}</p>
+                  <p className="text-[0.7rem] text-muted-foreground uppercase tracking-[0.18em] mt-1">{stat.label}</p>
                 </div>
               ))}
             </motion.div>
@@ -152,10 +152,10 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                className="absolute -bottom-6 left-6 bg-background border border-border px-6 py-4 z-20 shadow-xl"
+                className="absolute -bottom-6 left-6 bg-background/95 backdrop-blur-sm border border-border px-6 py-4 z-20 shadow-xl"
               >
-                <p className="font-serif font-bold text-lg">Gies Abdelmonim</p>
-                <p className="text-primary text-xs uppercase tracking-widest mt-0.5">Dubai, UAE · Since 2006</p>
+                <p className="font-serif font-semibold tracking-[-0.04em] text-lg">Gies Abdelmonim</p>
+                <p className="text-primary text-[0.68rem] uppercase tracking-[0.22em] mt-1">Dubai, UAE · Since 2006</p>
               </motion.div>
             </div>
           </motion.div>

@@ -77,26 +77,27 @@ export default function Education() {
           className="max-w-4xl mx-auto"
         >
           <motion.div variants={fadeUpVariant} className="mb-16">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
+            <p className="eyebrow text-primary mb-5">Education Chapter</p>
+            <h1 className="display-title text-4xl md:text-5xl lg:text-6xl font-serif font-semibold text-foreground mb-6">
               Education &<br />
               <span className="text-primary">Credentials</span>
             </h1>
             <div className="w-24 h-1 bg-primary mb-8" />
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="body-copy text-xl text-muted-foreground leading-relaxed max-w-3xl">
               A lifelong commitment to mastery — spanning engineering, blockchain, business, and law across three continents.
             </p>
           </motion.div>
 
           <motion.div variants={fadeUpVariant} className="mb-16">
-            <div className="grid grid-cols-3 gap-6 p-8 bg-card border border-border">
+            <div className="grid grid-cols-3 gap-6 p-8 bg-card/88 backdrop-blur-sm border border-border shadow-[0_24px_60px_-42px_rgba(0,0,0,0.95)]">
               {[
                 { label: "Degrees Earned", value: "4" },
                 { label: "Professional Certifications", value: "3+" },
                 { label: "Countries Studied", value: "UAE · Spain · Online" },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <p className="text-3xl md:text-4xl font-serif font-bold text-primary mb-2">{stat.value}</p>
-                  <p className="text-muted-foreground text-sm">{stat.label}</p>
+                  <p className="text-3xl md:text-4xl font-serif font-semibold tracking-[-0.05em] text-primary mb-2">{stat.value}</p>
+                  <p className="text-muted-foreground text-sm body-copy">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -120,25 +121,25 @@ export default function Education() {
                     )}
                   </div>
 
-                  <div className={`border p-6 md:p-8 relative overflow-hidden ${typeColors[cred.type]}`}>
+                  <div className={`border p-6 md:p-8 relative overflow-hidden backdrop-blur-sm shadow-[0_20px_60px_-40px_rgba(0,0,0,0.85)] ${typeColors[cred.type]}`}>
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
                       <div>
                         <div className="flex items-center gap-3 mb-2">
-                          <span className="text-xs uppercase tracking-widest text-primary font-medium border border-primary/30 px-2 py-0.5">
+                          <span className="text-[0.68rem] uppercase tracking-[0.18em] text-primary font-medium border border-primary/30 px-2 py-0.5">
                             {typeLabels[cred.type]}
                           </span>
                         </div>
-                        <h2 className="text-xl md:text-2xl font-serif font-bold">{cred.title}</h2>
-                        <p className="text-primary font-medium mt-1">{cred.field}</p>
+                        <h2 className="text-xl md:text-2xl font-serif font-semibold tracking-[-0.04em]">{cred.title}</h2>
+                        <p className="text-primary font-medium mt-1 body-copy">{cred.field}</p>
                       </div>
                       <div className="text-right flex-shrink-0">
                         <p className="text-muted-foreground text-sm font-medium">{cred.period}</p>
                       </div>
                     </div>
-                    <p className="text-muted-foreground text-xs uppercase tracking-wider mb-3 flex items-center gap-2">
+                    <p className="text-muted-foreground text-[0.68rem] uppercase tracking-[0.18em] mb-3 flex items-center gap-2">
                       <BookOpen className="w-3.5 h-3.5" /> {cred.institution}
                     </p>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{cred.description}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed body-copy">{cred.description}</p>
                   </div>
                 </motion.div>
               ))}

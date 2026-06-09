@@ -11,26 +11,30 @@ function App() {
   return (
     <div className="bg-background text-foreground selection:bg-primary selection:text-primary-foreground">
       <Navbar />
-      <main>
+      <main className="relative overflow-hidden">
+        <div className="pointer-events-none absolute inset-0 opacity-40">
+          <div className="absolute left-[8%] top-0 h-full w-px bg-gradient-to-b from-transparent via-primary/25 to-transparent" />
+          <div className="absolute right-[10%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/8 to-transparent" />
+        </div>
         <section id="home" className="section-snap">
           <Home />
         </section>
-        <section id="technology" className="section-snap">
+        <section id="technology" className="section-snap section-shell section-shell-alt">
           <ITExperience />
         </section>
-        <section id="blockchain" className="section-snap">
+        <section id="blockchain" className="section-snap section-shell">
           <Blockchain />
         </section>
-        <section id="secoto" className="section-snap">
+        <section id="secoto" className="section-snap section-shell section-shell-alt">
           <Secoto />
         </section>
-        <section id="legal" className="section-snap">
+        <section id="legal" className="section-snap section-shell">
           <Legal />
         </section>
-        <section id="education" className="section-snap">
+        <section id="education" className="section-snap section-shell section-shell-alt">
           <Education />
         </section>
-        <section id="contact" className="section-snap">
+        <section id="contact" className="section-snap section-shell">
           <Contact />
         </section>
       </main>

@@ -63,7 +63,7 @@ export function Navbar() {
             onClick={() => scrollToSection("home")}
             className="group flex items-center gap-2"
           >
-            <span className="font-serif text-xl md:text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
+            <span className="font-serif text-xl md:text-[1.7rem] font-semibold tracking-[-0.06em] text-foreground transition-colors group-hover:text-primary">
               Gies<span className="text-primary">.</span>
             </span>
           </button>
@@ -75,7 +75,7 @@ export function Navbar() {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors hover:text-primary relative ${
+                  className={`text-[0.82rem] font-medium tracking-[0.18em] uppercase transition-colors hover:text-primary relative ${
                     isActive ? "text-primary" : "text-muted-foreground"
                   }`}
                 >
@@ -92,7 +92,7 @@ export function Navbar() {
             })}
             <button
               onClick={() => scrollToSection("contact")}
-              className="ml-4 px-5 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-none border border-primary hover:bg-transparent hover:text-primary transition-all duration-300 flex items-center gap-2"
+              className="ml-4 px-5 py-2.5 text-[0.78rem] font-semibold tracking-[0.16em] uppercase bg-primary text-primary-foreground rounded-none border border-primary hover:bg-transparent hover:text-primary transition-all duration-300 flex items-center gap-2"
             >
               Get in Touch <ChevronRight className="w-4 h-4" />
             </button>
@@ -126,7 +126,7 @@ export function Navbar() {
                       scrollToSection(item.id);
                       setMobileMenuOpen(false);
                     }}
-                    className={`text-left text-2xl font-serif tracking-tight transition-colors ${
+                    className={`text-left text-2xl font-serif tracking-[-0.05em] transition-colors ${
                       isActive ? "text-primary" : "text-foreground"
                     }`}
                   >
@@ -136,14 +136,14 @@ export function Navbar() {
               })}
             </nav>
             <div className="mt-auto pt-12">
-              <p className="text-sm text-muted-foreground mb-4">giesalbon@gmail.com</p>
-              <p className="text-sm text-muted-foreground mb-8">+971-582-188-898</p>
+              <p className="text-sm text-muted-foreground mb-4 tracking-[-0.02em]">giesalbon@gmail.com</p>
+              <p className="text-sm text-muted-foreground mb-8 tracking-[-0.02em]">+971-582-188-898</p>
               <button
                 onClick={() => {
                   scrollToSection("contact");
                   setMobileMenuOpen(false);
                 }}
-                className="w-full px-6 py-4 text-center text-sm font-medium bg-primary text-primary-foreground border border-primary hover:bg-transparent hover:text-primary transition-all duration-300"
+                className="w-full px-6 py-4 text-center text-[0.8rem] font-semibold tracking-[0.16em] uppercase bg-primary text-primary-foreground border border-primary hover:bg-transparent hover:text-primary transition-all duration-300"
               >
                 Get in Touch
               </button>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500;9..144,600;9..144,700&family=Instrument+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 @plugin "@tailwindcss/typography";
@@ -83,8 +83,8 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 210 40% 98%;
 
-  --app-font-sans: 'Plus Jakarta Sans', sans-serif;
-  --app-font-serif: 'Playfair Display', serif;
+  --app-font-sans: 'Instrument Sans', sans-serif;
+  --app-font-serif: 'Fraunces', serif;
   --app-font-mono: Menlo, monospace;
   
   --radius: 0.5rem;
@@ -137,11 +137,34 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+    letter-spacing: -0.012em;
+    text-rendering: optimizeLegibility;
+    background-image:
+      radial-gradient(circle at top left, hsl(var(--primary) / 0.09), transparent 28%),
+      radial-gradient(circle at 85% 18%, hsl(210 40% 98% / 0.05), transparent 18%),
+      linear-gradient(180deg, hsl(222 47% 12%), hsl(222 47% 9%));
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif tracking-tight;
+    font-variation-settings: "SOFT" 65;
   }
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.display-title {
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.body-copy {
+  letter-spacing: -0.018em;
 }
 
 
@@ -262,6 +285,52 @@ html {
   scroll-behavior: smooth;
 }
 
+main {
+  position: relative;
+}
+
 .section-snap {
   scroll-snap-align: start;
+}
+
+.section-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.section-shell::before {
+  content: "";
+  position: absolute;
+  inset: 3rem 1.25rem;
+  border: 1px solid hsl(var(--border) / 0.65);
+  background:
+    linear-gradient(180deg, hsl(222 47% 12% / 0.8), hsl(222 47% 10% / 0.82)),
+    radial-gradient(circle at top right, hsl(var(--primary) / 0.06), transparent 30%);
+  z-index: -2;
+}
+
+.section-shell::after {
+  content: "";
+  position: absolute;
+  inset: 3rem 1.25rem;
+  background-image:
+    linear-gradient(to right, hsl(210 40% 98% / 0.028) 1px, transparent 1px),
+    linear-gradient(to bottom, hsl(210 40% 98% / 0.022) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: linear-gradient(180deg, transparent, black 12%, black 88%, transparent);
+  z-index: -1;
+  opacity: 0.28;
+}
+
+.section-shell-alt::before {
+  background:
+    linear-gradient(180deg, hsl(222 47% 10.5% / 0.84), hsl(222 47% 8.8% / 0.9)),
+    radial-gradient(circle at 12% 18%, hsl(var(--primary) / 0.09), transparent 24%);
+}
+
+@media (min-width: 768px) {
+  .section-shell::before,
+  .section-shell::after {
+    inset: 3.5rem 2.5rem;
+  }
 }

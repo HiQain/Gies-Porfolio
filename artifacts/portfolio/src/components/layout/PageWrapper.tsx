@@ -13,8 +13,10 @@ export function PageWrapper({ children, className = "" }: PageWrapperProps) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`min-h-screen pt-24 lg:pt-32 pb-16 ${className}`}
+      className={`relative min-h-screen pt-24 lg:pt-32 pb-16 ${className}`}
     >
+      <div className="pointer-events-none absolute inset-x-6 top-10 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent md:inset-x-12" />
+      <div className="pointer-events-none absolute right-6 top-24 hidden h-24 w-24 rounded-full border border-primary/12 md:block" />
       {children}
     </motion.div>
   );
