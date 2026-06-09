@@ -14,7 +14,7 @@ function App() {
       <main className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 opacity-40">
           <div className="absolute left-[8%] top-0 h-full w-px bg-gradient-to-b from-transparent via-primary/25 to-transparent" />
-          <div className="absolute right-[10%] top-0 h-full w-px bg-gradient-to-b from-transparent via-white/8 to-transparent" />
+          <div className="absolute right-[10%] top-0 h-full w-px bg-gradient-to-b from-transparent via-foreground/10 to-transparent" />
         </div>
         <section id="home" className="section-snap">
           <Home />

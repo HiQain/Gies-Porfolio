@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, Moon, SunMedium } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 
 const navItems = [
@@ -17,16 +17,32 @@ function scrollToSection(id: string) {
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+type ThemeMode = "dark" | "light";
+
+function getInitialTheme(): ThemeMode {
+  if (typeof window === "undefined") return "dark";
+
+  const savedTheme = window.localStorage.getItem("theme-mode");
+  return savedTheme === "light" ? "light" : "dark";
+}
+
 export function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [themeMode, setThemeMode] = useState<ThemeMode>(getInitialTheme);
   const { scrollYProgress } = useScroll();
   const progressScaleX = useSpring(scrollYProgress, {
     stiffness: 140,
     damping: 28,
     mass: 0.2,
   });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.toggle("light", themeMode === "light");
+    window.localStorage.setItem("theme-mode", themeMode);
+  }, [themeMode]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,6 +70,14 @@ export function Navbar() {
 
     return () => observers.forEach((o) => o.disconnect());
   }, []);
+
+  const toggleTheme = () => {
+    setThemeMode((currentTheme) => (currentTheme === "dark" ? "light" : "dark"));
+  };
+
+  const themeToggleLabel = themeMode === "dark" ? "Switch to light mode" : "Switch to dark mode";
+  const themeToggleIcon =
+    themeMode === "dark" ? <SunMedium className="h-4 w-4" /> : <Moon className="h-4 w-4" />;
 
   return (
     <>
@@ -101,6 +125,15 @@ export function Navbar() {
               );
             })}
             <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={themeToggleLabel}
+              title={themeToggleLabel}
+              className="flex h-11 w-11 items-center justify-center border border-border bg-background/80 text-foreground transition-all duration-300 hover:border-primary/50 hover:text-primary"
+            >
+              {themeToggleIcon}
+            </button>
+            <button
               onClick={() => scrollToSection("contact")}
               className="ml-4 px-5 py-2.5 text-[0.78rem] font-semibold tracking-[0.16em] uppercase bg-primary text-primary-foreground rounded-none border border-primary hover:bg-transparent hover:text-primary transition-all duration-300 flex items-center gap-2"
             >
@@ -108,12 +141,23 @@ export function Navbar() {
             </button>
           </nav>
 
-          <button
-            className="lg:hidden text-foreground p-2 -mr-2"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={themeToggleLabel}
+              title={themeToggleLabel}
+              className="flex h-10 w-10 items-center justify-center border border-border bg-background/70 text-foreground transition-all duration-300 hover:border-primary/50 hover:text-primary"
+            >
+              {themeToggleIcon}
+            </button>
+            <button
+              className="text-foreground p-2 -mr-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </header>
 
