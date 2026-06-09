@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, ArrowRight } from "lucide-react";
-import { PageWrapper, staggerContainer, fadeUpVariant } from "@/components/layout/PageWrapper";
+import { PageWrapper, staggerContainer, fadeUpVariant } from "../components/layout/PageWrapper";
 
 export default function Contact() {
   const [formState, setFormState] = useState({

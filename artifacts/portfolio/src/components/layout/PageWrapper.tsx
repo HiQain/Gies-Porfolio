@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ReactNode } from "react";
 
 interface PageWrapperProps {
@@ -20,7 +20,9 @@ export function PageWrapper({ children, className = "" }: PageWrapperProps) {
   );
 }
 
-export const staggerContainer = {
+const easingCurve = [0.22, 1, 0.36, 1] as const;
+
+export const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -30,7 +32,7 @@ export const staggerContainer = {
   },
 };
 
-export const fadeUpVariant = {
+export const fadeUpVariant: Variants = {
   hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easingCurve } },
 };

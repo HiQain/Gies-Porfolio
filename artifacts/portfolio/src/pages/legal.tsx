@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Scale, Briefcase, Globe, Building2, Users, FileText } from "lucide-react";
-import { PageWrapper, staggerContainer, fadeUpVariant } from "@/components/layout/PageWrapper";
+import { PageWrapper, staggerContainer, fadeUpVariant } from "../components/layout/PageWrapper";
 
 export default function Legal() {
   return (

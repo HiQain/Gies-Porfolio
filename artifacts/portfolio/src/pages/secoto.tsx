@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Globe, Leaf, Trophy, Flag, Building, Users } from "lucide-react";
-import { PageWrapper, staggerContainer, fadeUpVariant } from "@/components/layout/PageWrapper";
+import { PageWrapper, staggerContainer, fadeUpVariant } from "../components/layout/PageWrapper";
 
 export default function Secoto() {
   return (

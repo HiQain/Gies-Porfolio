@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Server, Shield, Network, Code, Terminal, Briefcase, Building2 } from "lucide-react";
-import { PageWrapper, staggerContainer, fadeUpVariant } from "@/components/layout/PageWrapper";
+import { PageWrapper, staggerContainer, fadeUpVariant } from "../components/layout/PageWrapper";
 
 export default function ITExperience() {
   return (

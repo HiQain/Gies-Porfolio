@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Cpu, Globe, Lock, Database, Award, BookOpen, Heart, Shield, Zap, BarChart3, Users, FileText } from "lucide-react";
-import { PageWrapper, staggerContainer, fadeUpVariant } from "@/components/layout/PageWrapper";
+import { PageWrapper, staggerContainer, fadeUpVariant } from "../components/layout/PageWrapper";
 
 export default function Blockchain() {
   return (

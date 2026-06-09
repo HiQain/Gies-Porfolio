@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Award, BookOpen } from "lucide-react";
-import { PageWrapper, staggerContainer, fadeUpVariant } from "@/components/layout/PageWrapper";
+import { PageWrapper, staggerContainer, fadeUpVariant } from "../components/layout/PageWrapper";
 
 const credentials = [
   {
