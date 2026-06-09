@@ -1,6 +1,7 @@
 [build]
+  base = "artifacts/portfolio"
   command = "npm run build"
-  publish = "artifacts/portfolio/dist"
+  publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
