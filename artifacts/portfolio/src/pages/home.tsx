@@ -9,13 +9,32 @@ const roles = [
   "Co-Founder, SECOTO International",
 ];
 
+const heroPhotos = [
+  "/images/photo-1.jpg",
+  "/images/photo-2.jpg",
+  "/images/photo-4.jpg",
+  "/images/photo-5.jpg",
+  "/images/photo-6.jpg",
+  "/images/photo-7.jpg",
+  "/images/photo-8.jpg",
+  "/images/photo-9.jpg",
+];
+
 export default function Home() {
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
     }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPhotoIndex((prev) => (prev + 1) % heroPhotos.length);
+    }, 2800);
     return () => clearInterval(interval);
   }, []);
 
@@ -27,8 +46,8 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/3 to-transparent" />
       </div>
 
-      <div className="container relative z-10 px-6 md:px-12 mx-auto pt-24 md:pt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
+      <div className="container relative z-10 px-5 sm:px-6 md:px-12 mx-auto pt-24 md:pt-20 pb-20 md:pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-16 items-center min-h-[80vh]">
 
           {/* Left — Text Content */}
           <div className="flex flex-col justify-center">
@@ -47,7 +66,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="display-title text-5xl md:text-6xl lg:text-7xl font-serif font-semibold text-foreground mb-6"
+              className="display-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-semibold text-foreground mb-6"
             >
               Gies<br />
               <span className="text-primary">Abdelmonim</span>
@@ -57,7 +76,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="h-10 md:h-12 mb-6"
+              className="min-h-12 md:h-12 mb-6"
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -66,7 +85,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -16 }}
                   transition={{ duration: 0.5 }}
-                  className="text-lg md:text-[1.65rem] font-medium tracking-[-0.03em] text-muted-foreground"
+                  className="text-base sm:text-lg md:text-[1.65rem] font-medium tracking-[-0.03em] text-muted-foreground"
                 >
                   {roles[currentRoleIndex]}
                 </motion.div>
@@ -77,7 +96,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="body-copy text-base md:text-[1.1rem] text-muted-foreground max-w-xl mb-10 leading-relaxed"
+              className="body-copy text-sm sm:text-base md:text-[1.1rem] text-muted-foreground max-w-xl mb-10 leading-relaxed"
             >
               15+ years spanning technology, blockchain, and law — building at the intersection of innovation and impact.
             </motion.p>
@@ -108,7 +127,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
-              className="flex gap-8 mt-14 border-t border-border/50 pt-8"
+              className="flex flex-wrap gap-x-8 gap-y-5 mt-14 border-t border-border/50 pt-8"
             >
               {[
                 { value: "15+", label: "Years Experience" },
@@ -128,21 +147,27 @@ export default function Home() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="relative flex justify-center lg:justify-end items-center"
+            className="relative flex justify-center lg:justify-end items-center px-2 sm:px-0"
           >
-            <div className="relative">
+            <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px]">
               {/* Gold accent frame */}
               <div className="absolute -top-4 -right-4 w-full h-full border border-primary/30 z-0" />
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 border-l-2 border-b-2 border-primary z-0" />
+              <div className="absolute -bottom-4 -left-3 sm:-left-4 w-20 sm:w-24 h-20 sm:h-24 border-l-2 border-b-2 border-primary z-0" />
 
               {/* Main photo */}
-              <div className="relative z-10 w-[320px] md:w-[400px] lg:w-[440px] overflow-hidden">
-                <img
-                  src="/images/photo-4.jpg"
-                  alt="Gies Abdelmonim"
-                  className="w-full object-cover object-top"
-                  style={{ maxHeight: "580px" }}
-                />
+              <div className="relative z-10 w-full overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={heroPhotos[currentPhotoIndex]}
+                    src={heroPhotos[currentPhotoIndex]}
+                    alt="Gies Abdelmonim"
+                    className="w-full h-[420px] sm:h-[500px] lg:h-[580px] object-cover object-top"
+                    initial={{ opacity: 0, scale: 1.03 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.985 }}
+                    transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </AnimatePresence>
                 {/* Bottom gradient overlay */}
                 <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background/60 to-transparent" />
               </div>
@@ -152,10 +177,10 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
-                className="absolute -bottom-6 left-6 bg-background/95 backdrop-blur-sm border border-border px-6 py-4 z-20 shadow-xl"
+                className="absolute -bottom-10 left-1/2 w-[calc(100%-2rem)] max-w-[280px] -translate-x-1/2 sm:translate-x-0 sm:left-6 sm:w-auto sm:max-w-none bg-background/95 backdrop-blur-sm border border-border px-5 sm:px-6 py-4 z-20 shadow-xl"
               >
-                <p className="font-serif font-semibold tracking-[-0.04em] text-lg">Gies Abdelmonim</p>
-                <p className="text-primary text-[0.68rem] uppercase tracking-[0.22em] mt-1">Dubai, UAE · Since 2006</p>
+                <p className="font-serif font-semibold tracking-[-0.04em] text-base sm:text-lg">Gies Abdelmonim</p>
+                <p className="text-primary text-[0.62rem] sm:text-[0.68rem] uppercase tracking-[0.18em] sm:tracking-[0.22em] mt-1">Dubai, UAE · Since 2006</p>
               </motion.div>
             </div>
           </motion.div>
@@ -168,7 +193,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground text-xs uppercase tracking-widest"
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:flex flex-col items-center gap-2 text-muted-foreground text-xs uppercase tracking-widest"
       >
         <span>Discover</span>
         <div className="w-[1px] h-12 bg-border relative overflow-hidden">
